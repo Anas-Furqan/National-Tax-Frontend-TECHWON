@@ -1,70 +1,138 @@
-# Getting Started with Create React App
+# National Tax Law Associates - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React frontend for the National Tax Law Associates website, featuring a responsive landing page, blog system, and admin dashboard.
+
+## Tech Stack
+
+- **React 19** - UI framework
+- **Tailwind CSS** - Styling
+- **Framer Motion** - Animations
+- **React Router v6** - Routing
+- **Axios** - HTTP client
+- **Lucide React** - Icons
+- **React Hot Toast** - Notifications
+
+## Prerequisites
+
+- Node.js >= 18.x
+- Backend API running on port 5000
+
+## Installation
+
+1. Navigate to frontend folder:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create `.env` file:
+   ```bash
+   cp .env.example .env
+   ```
+
+## Environment Variables
+
+```env
+REACT_APP_API_URL=http://localhost:5000/api
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the app in development mode at [http://localhost:3000](http://localhost:3000)
 
 ### `npm run build`
+Builds the app for production to the `build` folder
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm test`
+Launches the test runner
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+frontend/src/
+├── components/
+│   ├── admin/
+│   │   └── AdminLayout.js     # Admin dashboard layout
+│   ├── animations/
+│   │   └── AnimationWrappers.js
+│   ├── common/
+│   │   ├── LoadingSpinner.js
+│   │   └── ProtectedRoute.js
+│   ├── layout/
+│   │   ├── Header.js          # Navigation
+│   │   ├── Footer.js
+│   │   └── Layout.js
+│   └── sections/
+│       ├── Hero.js            # Landing hero
+│       ├── About.js
+│       ├── Services.js        # 8 service cards
+│       ├── ConsultationForm.js # File upload form
+│       ├── Newsletter.js
+│       └── BlogPreview.js
+├── context/
+│   └── AuthContext.js         # Authentication state
+├── hooks/
+│   ├── useForm.js
+│   └── useScrollAnimation.js
+├── pages/
+│   ├── Home.js
+│   ├── Blog.js
+│   ├── BlogDetail.js
+│   └── admin/
+│       ├── Login.js
+│       ├── Dashboard.js
+│       ├── BlogList.js
+│       ├── BlogEditor.js
+│       ├── Consultations.js
+│       └── Subscribers.js
+├── services/
+│   ├── api.js                 # Axios instance
+│   ├── authService.js
+│   ├── blogService.js
+│   ├── consultationService.js
+│   └── newsletterService.js
+├── App.js                     # Routes config
+├── index.js
+└── index.css                  # Tailwind + custom styles
+```
 
-### `npm run eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Public Pages
+- **Home** - Landing page with hero, about, services, consultation form, newsletter, blog preview
+- **Blog** - Blog listing with category filtering and pagination
+- **Blog Detail** - Individual blog post with social sharing
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Admin Dashboard
+- **Dashboard** - Statistics and quick actions
+- **Blog Management** - Create, edit, delete blog posts
+- **Consultations** - View and manage client requests
+- **Subscribers** - Newsletter subscriber management
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Color Scheme
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Primary (Gold):** #D4A00A
+- **Secondary (Dark):** #1A1A1A
+- **Fonts:** Inter (body), Poppins (headings)
 
-## Learn More
+## Routes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+| Path | Component | Description |
+|------|-----------|-------------|
+| `/` | Home | Landing page |
+| `/blog` | Blog | Blog listing |
+| `/blog/:id` | BlogDetail | Single blog post |
+| `/admin/login` | Login | Admin login |
+| `/admin` | Dashboard | Admin dashboard |
+| `/admin/blogs` | BlogList | Blog management |
+| `/admin/blogs/new` | BlogEditor | Create blog |
+| `/admin/blogs/:id` | BlogEditor | Edit blog |
+| `/admin/consultations` | Consultations | View requests |
+| `/admin/subscribers` | Subscribers | Newsletter subs |
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT

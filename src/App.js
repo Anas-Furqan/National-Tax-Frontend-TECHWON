@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+
+// Layout
+import Layout from './components/layout/Layout';
+
+// Public Pages
+import Home from './pages/Home';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
+
+// Admin Pages
+import Login from './pages/admin/Login';
+import AdminLayout from './components/admin/AdminLayout';
+import Dashboard from './pages/admin/Dashboard';
+import BlogList from './pages/admin/BlogList';
+import BlogEditor from './pages/admin/BlogEditor';
+import Consultations from './pages/admin/Consultations';
+import Subscribers from './pages/admin/Subscribers';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="blog/:slug" element={<BlogDetail />} />
+          </Route>
+
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="blogs" element={<BlogList />} />
+            <Route path="blogs/new" element={<BlogEditor />} />
+            <Route path="blogs/edit/:id" element={<BlogEditor />} />
+            <Route path="consultations" element={<Consultations />} />
+            <Route path="subscribers" element={<Subscribers />} />
+          </Route>
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
