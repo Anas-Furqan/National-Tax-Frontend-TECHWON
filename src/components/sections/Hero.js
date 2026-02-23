@@ -38,7 +38,7 @@ const Hero = () => {
               className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/30 rounded-full px-4 py-2 mb-6"
             >
               <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse" />
-              <span className="text-primary-400 text-sm font-medium">Trusted Tax Consultants Since 2026</span>
+              <span className="text-primary-400 text-sm font-medium">Trusted Tax Consultants Since 2010</span>
             </motion.div>
 
             <motion.h1
