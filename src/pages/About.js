@@ -151,13 +151,17 @@ const About = () => {
             >
               <div className="relative">
                 <div className="bg-primary-500 rounded-2xl overflow-hidden">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-primary-400 to-primary-600 p-8 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center mb-6 overflow-hidden">
-                        <img src="/logo.jpeg" alt="NTL" className="w-full h-full object-contain p-2" />
+                  <div className="aspect-[4/3] bg-gradient-to-br from-primary-400 to-primary-600 overflow-hidden relative">
+                    <img 
+                      src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600&h=450&fit=crop&q=80" 
+                      alt="Professional Tax Consulting Team" 
+                      className="w-full h-full object-cover mix-blend-overlay opacity-60"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <h3 className="text-3xl font-heading font-bold text-white mb-2">15+</h3>
+                        <p className="text-white/80">Years of Excellence</p>
                       </div>
-                      <h3 className="text-3xl font-heading font-bold text-white mb-2">15+</h3>
-                      <p className="text-white/80">Years of Excellence</p>
                     </div>
                   </div>
                 </div>
@@ -178,7 +182,9 @@ const About = () => {
                   </div>
                 </motion.div>
 
-                <div className="absolute -top-4 -left-4 w-24 h-24 border-4 border-primary-500 rounded-2xl" />
+                {/* Soft glow accent */}
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-br from-primary-300/40 to-primary-500/20 rounded-2xl blur-sm" />
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-primary-100/50 rounded-2xl" />
               </div>
             </motion.div>
 

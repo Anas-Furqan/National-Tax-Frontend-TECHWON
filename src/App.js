@@ -22,6 +22,7 @@ import BlogEditor from './pages/admin/BlogEditor';
 import Consultations from './pages/admin/Consultations';
 import Subscribers from './pages/admin/Subscribers';
 import ConsultantManager from './pages/admin/ConsultantManager';
+import SocialLinks from './pages/admin/SocialLinks';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
             <Route path="consultations" element={<Consultations />} />
             <Route path="subscribers" element={<Subscribers />} />
             <Route path="consultants" element={<ConsultantManager />} />
+            <Route path="social-links" element={<SocialLinks />} />
           </Route>
         </Routes>
       </Router>

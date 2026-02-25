@@ -109,16 +109,18 @@ const Hero = () => {
             className="hidden lg:block relative"
           >
             <div className="relative">
-              {/* Main Card */}
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                <div className="w-full aspect-square bg-gradient-to-br from-white/20 to-white/10 rounded-xl flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-6 shadow-green-lg overflow-hidden">
-                      <img src="/logo.jpeg" alt="National Tax Law Associates" className="w-full h-full object-contain p-2" />
-                    </div>
-                    <h3 className="text-2xl font-heading font-bold text-white mb-2">National Tax Law</h3>
-                    <p className="text-primary-100">Associates</p>
-                  </div>
+              {/* Professional Image Card */}
+              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+                <div className="w-full aspect-square rounded-xl overflow-hidden">
+                  <img 
+                    src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=600&fit=crop&q=80" 
+                    alt="Professional Tax Consultancy" 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="mt-4 text-center">
+                  <h3 className="text-xl font-heading font-bold text-white mb-1">Expert Tax Guidance</h3>
+                  <p className="text-primary-100 text-sm">Trusted by 5000+ Clients</p>
                 </div>
               </div>
 

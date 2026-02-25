@@ -8,7 +8,8 @@ import {
   LogOut,
   Menu,
   X,
-  UserCircle
+  UserCircle,
+  Share2
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
@@ -28,6 +29,7 @@ const AdminLayout = () => {
     { name: 'Consultations', icon: MessageSquare, href: '/admin/consultations' },
     { name: 'Subscribers', icon: Users, href: '/admin/subscribers' },
     { name: 'Consultants', icon: UserCircle, href: '/admin/consultants' },
+    { name: 'Social Links', icon: Share2, href: '/admin/social-links' },
   ];
 
   const handleLogout = () => {

@@ -28,22 +28,24 @@ const Contact = () => {
 
   const locations = [
     {
-      name: 'Karachi Office (Head Office)',
-      address: 'B-93, Block-M, North Nazimabad, Karachi',
+      name: 'Head Office - Custom House Area',
+      address: '8, Opp. Custom House, Suite#:1, Mezzanine Floor, Poonawala View, G. K, 15 Bohri Rd, Karachi',
       phone: '+92 345 271 2672',
       email: 'nationaltaxlawassociates@gmail.com',
       hours: 'Mon-Sat: 9:00 AM - 6:00 PM',
-      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.6794!2d67.0261!3d24.9421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sNorth%20Nazimabad%2C%20Karachi!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.422386164573!2d66.9933668!3d24.849419500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb3155791c2dd1b%3A0x7265bea350272910!2sBhundi%20Corporation%20(Clearing%20Agent%20And%20Consultant)!5e0!3m2!1sen!2s!4v1772052601053!5m2!1sen!2s',
       isPrimary: true,
+      directions: 'https://www.google.com/maps/dir//8,+Bhundi+Corporation+(Clearing+Agent+And+Consultant),+Opp.+Custom+House,+Suite%23:1,+Mezzanine+Floor,+Poonawala+View,+G.+K,+15+Bohri+Rd,+Ghulam+Hussain+Kasim+Quarters,+Karachi,+Pakistan/@24.8494378,66.9749127,15z/data=!4m16!1m7!3m6!1s0x3eb3155791c2dd1b:0x7265bea350272910!2sBhundi+Corporation+(Clearing+Agent+And+Consultant)!8m2!3d24.8494195!4d66.9933668!16s%2Fg%2F11h44p4pcq!4m7!1m0!1m5!1m1!1s0x3eb3155791c2dd1b:0x7265bea350272910!2m2!1d66.9933668!2d24.8494195?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D',
     },
     {
-      name: 'Islamabad Office',
-      address: 'Office 205, 2nd Floor, Blue Area, Islamabad',
+      name: 'Branch Office - North Karachi',
+      address: 'Noorani Market, 11 G New, Sector 11-G, North Karachi, Karachi',
       phone: '+92 345 212 6174',
       email: 'nationaltaxlawassociates@gmail.com',
       hours: 'Mon-Sat: 9:00 AM - 6:00 PM',
-      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3318.6!2d73.0551!3d33.7104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBlue%20Area%2C%20Islamabad!5e0!3m2!1sen!2s!4v1600000000000!5m2!1sen!2s',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7233.4570104883005!2d67.0857256!3d24.9753501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34728c40c7655%3A0x1b5f5b7e05d219ec!2sRehan%20Tawakal%20Enterprise!5e0!3m2!1sen!2s!4v1772052802125!5m2!1sen!2s',
       isPrimary: false,
+      directions: 'https://www.google.com/maps/dir//Rehan+Tawakal+Enterprise,+Noorani+market,+11+g+new,+Sector+11-G+Sector+11+G+North+Karachi,+Karachi,+75850,+Pakistan/@24.9753501,67.0857256,16z/data=!4m16!1m7!3m6!1s0x3eb34728c40c7655:0x1b5f5b7e05d219ec!2sRehan+Tawakal+Enterprise!8m2!3d24.9750883!4d67.0859233!16s%2Fg%2F11y67q520y!4m7!1m0!1m5!1m1!1s0x3eb34728c40c7655:0x1b5f5b7e05d219ec!2m2!1d67.0859233!2d24.9750883!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDIyMi4wIKXMDSoASAFQAw%3D%3D',
     },
   ];
 
@@ -434,7 +436,7 @@ const Contact = () => {
 
                     <div className="mt-4 flex gap-2">
                       <a
-                        href={`https://maps.google.com/?q=${encodeURIComponent(location.address)}`}
+                        href={location.directions}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex-1 text-center px-4 py-2 bg-primary-100 text-primary-600 font-medium rounded-lg hover:bg-primary-500 hover:text-white transition text-sm"

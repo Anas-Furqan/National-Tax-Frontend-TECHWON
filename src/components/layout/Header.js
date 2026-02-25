@@ -30,8 +30,8 @@ const Header = () => {
   ];
 
   const whatsappContacts = [
-    { name: 'Consultant 1', phone: '923452712672' },
-    { name: 'Consultant 2', phone: '923452126174' },
+    { name: '+923452712672', phone: '923452712672' },
+    { name: '+923452126174', phone: '923452126174' },
   ];
 
   return (
@@ -130,6 +130,26 @@ const Header = () => {
               >
                 Free Consultation
               </Link>
+            </div>
+
+            {/* Mobile Quick Contact Icons */}
+            <div className="lg:hidden flex items-center gap-2">
+              <a
+                href="https://wa.me/923452712672"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
+                title="WhatsApp Consultant 1"
+              >
+                <MessageCircle size={18} />
+              </a>
+              <a
+                href="tel:03452126174"
+                className="p-2 bg-primary-500 hover:bg-primary-600 text-white rounded-full transition-colors"
+                title="Call Consultant 2"
+              >
+                <Phone size={18} />
+              </a>
             </div>
 
             {/* Mobile Menu Button */}
