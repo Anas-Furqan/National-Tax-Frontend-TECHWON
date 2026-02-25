@@ -79,13 +79,13 @@ const About = () => {
       name: 'Main Office',
       address: '8, Opp. Custom House, Suite#:1, Mezzanine Floor, Poonawala View, G. K, 15 Bohri Rd, Karachi',
       phone: '021 32202292',
-      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.0!2d67.0!3d24.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDUxJzAwLjAiTiA2N8KwMDAnMDAuMCJF!5e0!3m2!1sen!2s!4v1234567890',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.422386164573!2d66.9933668!3d24.849419500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb3155791c2dd1b%3A0x7265bea350272910!2sBhundi%20Corporation%20(Clearing%20Agent%20And%20Consultant)!5e0!3m2!1sen!2s!4v1772052601053!5m2!1sen!2s',
     },
     {
       name: 'Branch Office',
       address: 'Noorani market, 11 g new, Sector 11-G North Karachi, Karachi',
       phone: null,
-      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.0!2d67.05!3d24.95!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDU3JzAwLjAiTiA2N8KwMDMnMDAuMCJF!5e0!3m2!1sen!2s!4v1234567890',
+      mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7233.4570104883005!2d67.0857256!3d24.9753501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34728c40c7655%3A0x1b5f5b7e05d219ec!2sRehan%20Tawakal%20Enterprise!5e0!3m2!1sen!2s!4v1772052802125!5m2!1sen!2s',
     },
   ];
 
