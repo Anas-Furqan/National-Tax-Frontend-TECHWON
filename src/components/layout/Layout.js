@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import SocialMediaWidget from '../common/SocialMediaWidget';
 import { Toaster } from 'react-hot-toast';
 
 const Layout = () => {
@@ -12,17 +13,18 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <SocialMediaWidget />
       <Toaster
         position="top-right"
         toastOptions={{
           duration: 4000,
           style: {
-            background: '#1A1A1A',
+            background: '#1A1A2E',
             color: '#fff',
           },
           success: {
             iconTheme: {
-              primary: '#D4A00A',
+              primary: '#006837',
               secondary: '#fff',
             },
           },

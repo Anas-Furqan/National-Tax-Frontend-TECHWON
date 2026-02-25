@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail } from 'lucide-react';
+import { Menu, X, Phone, Mail, MessageCircle } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,29 +23,46 @@ const Header = () => {
 
   const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/#about' },
-    { name: 'Services', href: '/#services' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/services' },
     { name: 'Blog', href: '/blog' },
-    { name: 'Contact', href: '/#contact' },
+    { name: 'Contact', href: '/contact' },
+  ];
+
+  const whatsappContacts = [
+    { name: 'Consultant 1', phone: '923452712672' },
+    { name: 'Consultant 2', phone: '923452126174' },
   ];
 
   return (
     <>
       {/* Top Bar */}
-      <div className="bg-secondary-500 text-white py-2 hidden md:block">
+      <div className="bg-primary-500 text-white py-2 hidden md:block">
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <a href="tel:+923001234567" className="flex items-center gap-2 hover:text-primary-400 transition-colors">
+            <a href="tel:+922132202292" className="flex items-center gap-2 hover:text-primary-100 transition-colors">
               <Phone size={14} />
-              <span>+92 300 1234567</span>
+              <span>021 32202292</span>
             </a>
-            <a href="mailto:info@nationaltaxlaw.com" className="flex items-center gap-2 hover:text-primary-400 transition-colors">
+            <a href="mailto:nationaltaxlawassociates@gmail.com" className="flex items-center gap-2 hover:text-primary-100 transition-colors">
               <Mail size={14} />
-              <span>info@nationaltaxlaw.com</span>
+              <span>nationaltaxlawassociates@gmail.com</span>
             </a>
           </div>
-          <div className="text-gray-300">
-            Trusted Tax Consultants Since 2010
+          <div className="flex items-center gap-4">
+            <span className="text-primary-100">WhatsApp:</span>
+            {whatsappContacts.map((contact, index) => (
+              <a
+                key={index}
+                href={`https://wa.me/${contact.phone}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 px-3 py-1 rounded-full transition-colors"
+              >
+                <MessageCircle size={14} />
+                <span>{contact.name}</span>
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -62,9 +79,11 @@ const Header = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-primary-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">NTL</span>
-              </div>
+              <img 
+                src="/logo.jpeg" 
+                alt="National Tax Law Associates" 
+                className="w-12 h-12 rounded-lg object-contain"
+              />
               <div className="hidden sm:block">
                 <h1 className="text-lg font-heading font-bold text-secondary-500 leading-tight">
                   National Tax Law
@@ -87,8 +106,24 @@ const Header = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <div className="hidden lg:flex items-center gap-4">
+            {/* CTA Buttons */}
+            <div className="hidden lg:flex items-center gap-3">
+              {/* WhatsApp Buttons */}
+              <div className="flex items-center gap-2">
+                {whatsappContacts.map((contact, index) => (
+                  <a
+                    key={index}
+                    href={`https://wa.me/${contact.phone}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-3 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors text-sm"
+                    title={contact.name}
+                  >
+                    <MessageCircle size={16} />
+                    <span className="hidden xl:inline">{contact.name}</span>
+                  </a>
+                ))}
+              </div>
               <Link
                 to="/#consultation"
                 className="btn-primary"
@@ -126,6 +161,22 @@ const Header = () => {
                     {link.name}
                   </Link>
                 ))}
+                {/* Mobile WhatsApp Contacts */}
+                <div className="border-t pt-4 space-y-2">
+                  <p className="text-sm text-gray-500 font-medium">WhatsApp Consultants:</p>
+                  {whatsappContacts.map((contact, index) => (
+                    <a
+                      key={index}
+                      href={`https://wa.me/${contact.phone}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-green-600 hover:text-green-700 py-2 transition-colors"
+                    >
+                      <MessageCircle size={18} />
+                      <span>{contact.name}: 0{contact.phone.slice(2)}</span>
+                    </a>
+                  ))}
+                </div>
                 <Link
                   to="/#consultation"
                   className="btn-primary w-full text-center"

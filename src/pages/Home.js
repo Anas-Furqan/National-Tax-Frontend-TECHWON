@@ -4,6 +4,7 @@ import About from '../components/sections/About';
 import Services from '../components/sections/Services';
 import ConsultationForm from '../components/sections/ConsultationForm';
 import BlogPreview from '../components/sections/BlogPreview';
+import Contact from '../components/sections/Contact';
 import Newsletter from '../components/sections/Newsletter';
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
       <Services />
       <ConsultationForm />
       <BlogPreview />
+      <Contact />
       <Newsletter />
     </>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Linkedin, Instagram, Youtube, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   const services = [
@@ -16,11 +16,29 @@ const Footer = () => {
 
   const quickLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/#about' },
+    { name: 'About Us', href: '/about' },
     { name: 'Services', href: '/#services' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/#contact' },
     { name: 'Privacy Policy', href: '/privacy' },
+  ];
+
+  const locations = [
+    {
+      name: 'Main Office',
+      address: '8, Opp. Custom House, Suite#:1, Mezzanine Floor, Poonawala View, G. K, 15 Bohri Rd, Karachi',
+      phone: '021 32202292',
+    },
+    {
+      name: 'Branch Office',
+      address: 'Noorani market, 11 g new, Sector 11-G North Karachi, Karachi',
+      phone: null,
+    },
+  ];
+
+  const whatsappContacts = [
+    { name: 'Consultant 1', phone: '923452712672' },
+    { name: 'Consultant 2', phone: '923452126174' },
   ];
 
   return (
@@ -31,9 +49,11 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-primary-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">NTL</span>
-              </div>
+              <img 
+                src="/logo.jpeg" 
+                alt="National Tax Law Associates" 
+                className="w-12 h-12 rounded-lg object-contain bg-white p-1"
+              />
               <div>
                 <h3 className="text-lg font-heading font-bold leading-tight">
                   National Tax Law
@@ -43,7 +63,7 @@ const Footer = () => {
             </div>
             <p className="text-gray-300 leading-relaxed">
               Pakistan's trusted tax consultancy firm providing comprehensive taxation 
-              and legal services since 2010. We help businesses and individuals navigate 
+              and legal services. We help businesses and individuals navigate 
               complex tax regulations with ease.
             </p>
             <div className="flex gap-4">
@@ -58,6 +78,9 @@ const Footer = () => {
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary-500 transition-colors">
                 <Instagram size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary-500 transition-colors">
+                <Youtube size={18} />
               </a>
             </div>
           </div>
@@ -100,41 +123,61 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+            {/* WhatsApp Contacts */}
+            <div className="mt-6 pt-4 border-t border-white/10">
+              <p className="text-sm text-gray-400 mb-3">WhatsApp Consultants:</p>
+              {whatsappContacts.map((contact, index) => (
+                <a
+                  key={index}
+                  href={`https://wa.me/${contact.phone}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-green-400 hover:text-green-300 mb-2 transition-colors"
+                >
+                  <MessageCircle size={16} />
+                  <span>{contact.name}: 0{contact.phone.slice(2)}</span>
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact Info - Two Locations */}
           <div>
             <h4 className="text-lg font-heading font-semibold mb-6 text-primary-400">
-              Contact Us
+              Our Locations
             </h4>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin className="text-primary-500 mt-1 flex-shrink-0" size={18} />
-                <span className="text-gray-300">
-                  Office #123, Business Center,<br />
-                  Main Boulevard, Lahore, Pakistan
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="text-primary-500 flex-shrink-0" size={18} />
-                <a href="tel:+923001234567" className="text-gray-300 hover:text-primary-400 transition-colors">
-                  +92 300 1234567
+            <div className="space-y-6">
+              {locations.map((location, index) => (
+                <div key={index} className="space-y-2">
+                  <h5 className="text-white font-medium">{location.name}</h5>
+                  <div className="flex items-start gap-3">
+                    <MapPin className="text-primary-500 mt-1 flex-shrink-0" size={16} />
+                    <span className="text-gray-300 text-sm">{location.address}</span>
+                  </div>
+                  {location.phone && (
+                    <div className="flex items-center gap-3">
+                      <Phone className="text-primary-500 flex-shrink-0" size={16} />
+                      <a href={`tel:${location.phone.replace(/\s/g, '')}`} className="text-gray-300 hover:text-primary-400 transition-colors text-sm">
+                        {location.phone}
+                      </a>
+                    </div>
+                  )}
+                </div>
+              ))}
+              <div className="flex items-center gap-3 pt-2">
+                <Mail className="text-primary-500 flex-shrink-0" size={16} />
+                <a href="mailto:nationaltaxlawassociates@gmail.com" className="text-gray-300 hover:text-primary-400 transition-colors text-sm break-all">
+                  nationaltaxlawassociates@gmail.com
                 </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="text-primary-500 flex-shrink-0" size={18} />
-                <a href="mailto:info@nationaltaxlaw.com" className="text-gray-300 hover:text-primary-400 transition-colors">
-                  info@nationaltaxlaw.com
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Clock className="text-primary-500 mt-1 flex-shrink-0" size={18} />
-                <span className="text-gray-300">
+              </div>
+              <div className="flex items-start gap-3">
+                <Clock className="text-primary-500 mt-1 flex-shrink-0" size={16} />
+                <span className="text-gray-300 text-sm">
                   Mon - Fri: 9:00 AM - 6:00 PM<br />
                   Sat: 10:00 AM - 2:00 PM
                 </span>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

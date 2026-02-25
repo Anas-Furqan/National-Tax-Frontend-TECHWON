@@ -9,33 +9,34 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          50: '#FFF9E6',
-          100: '#FFF0C2',
-          200: '#FFE08A',
-          300: '#FFCF52',
-          400: '#FFBF1A',
-          500: '#D4A00A', // Gold
-          600: '#AA8008',
-          700: '#806006',
-          800: '#554004',
-          900: '#2B2002',
+          50: '#E6F2EB',
+          100: '#C2E0D0',
+          200: '#8CC5A5',
+          300: '#56AA7A',
+          400: '#208F4F',
+          500: '#006837', // Deep Professional Green
+          600: '#00552D',
+          700: '#004223',
+          800: '#002F19',
+          900: '#001C0F',
         },
         secondary: {
-          50: '#E8E8E8',
-          100: '#D1D1D1',
-          200: '#A3A3A3',
-          300: '#757575',
-          400: '#474747',
-          500: '#1A1A1A', // Dark
-          600: '#151515',
-          700: '#101010',
-          800: '#0A0A0A',
-          900: '#050505',
+          50: '#F8F9FA',
+          100: '#F1F3F5',
+          200: '#E9ECEF',
+          300: '#DEE2E6',
+          400: '#ADB5BD',
+          500: '#1A1A2E', // Dark Navy
+          600: '#151524',
+          700: '#10101A',
+          800: '#0A0A10',
+          900: '#050508',
         },
         accent: {
-          gold: '#D4A00A',
-          darkGold: '#AA8008',
-          lightGold: '#FFE08A',
+          green: '#006837',
+          darkGreen: '#004223',
+          lightGreen: '#8CC5A5',
+          navy: '#1A1A2E',
         },
       },
       fontFamily: {
@@ -43,25 +44,25 @@ module.exports = {
         heading: ['Poppins', 'ui-sans-serif', 'sans-serif'],
       },
       backgroundImage: {
-        'hero-pattern': "linear-gradient(135deg, rgba(26,26,26,0.95) 0%, rgba(26,26,26,0.85) 100%)",
-        'gold-gradient': "linear-gradient(135deg, #D4A00A 0%, #FFE08A 50%, #D4A00A 100%)",
+        'hero-pattern': "linear-gradient(135deg, rgba(0,104,55,0.95) 0%, rgba(0,66,35,0.90) 100%)",
+        'green-gradient': "linear-gradient(135deg, #006837 0%, #8CC5A5 50%, #006837 100%)",
       },
       boxShadow: {
-        'gold': '0 4px 20px rgba(212, 160, 10, 0.25)',
-        'gold-lg': '0 10px 40px rgba(212, 160, 10, 0.35)',
+        'green': '0 4px 20px rgba(0, 104, 55, 0.25)',
+        'green-lg': '0 10px 40px rgba(0, 104, 55, 0.35)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
-        'pulse-gold': 'pulseGold 2s ease-in-out infinite',
+        'pulse-green': 'pulseGreen 2s ease-in-out infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
         },
-        pulseGold: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(212, 160, 10, 0.4)' },
-          '50%': { boxShadow: '0 0 0 20px rgba(212, 160, 10, 0)' },
+        pulseGreen: {
+          '0%, 100%': { boxShadow: '0 0 0 0 rgba(0, 104, 55, 0.4)' },
+          '50%': { boxShadow: '0 0 0 20px rgba(0, 104, 55, 0)' },
         },
       },
     },

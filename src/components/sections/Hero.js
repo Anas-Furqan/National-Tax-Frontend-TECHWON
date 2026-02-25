@@ -11,17 +11,17 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-[90vh] flex items-center bg-secondary-500 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center bg-primary-500 overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A00A' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }} />
       </div>
 
-      {/* Gold accent lines */}
-      <div className="absolute top-0 left-0 w-1 h-full bg-primary-500" />
-      <div className="absolute top-0 right-0 w-1 h-full bg-primary-500" />
+      {/* Accent lines */}
+      <div className="absolute top-0 left-0 w-1 h-full bg-white/20" />
+      <div className="absolute top-0 right-0 w-1 h-full bg-white/20" />
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -35,10 +35,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 bg-primary-500/10 border border-primary-500/30 rounded-full px-4 py-2 mb-6"
+              className="inline-flex items-center gap-2 bg-white/10 border border-white/30 rounded-full px-4 py-2 mb-6"
             >
-              <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse" />
-              <span className="text-primary-400 text-sm font-medium">Trusted Tax Consultants Since 2010</span>
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+              <span className="text-white text-sm font-medium">Trusted Tax Consultants</span>
             </motion.div>
 
             <motion.h1
@@ -111,13 +111,13 @@ const Hero = () => {
             <div className="relative">
               {/* Main Card */}
               <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                <div className="w-full aspect-square bg-gradient-to-br from-primary-500/20 to-primary-600/10 rounded-xl flex items-center justify-center">
+                <div className="w-full aspect-square bg-gradient-to-br from-white/20 to-white/10 rounded-xl flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-32 h-32 mx-auto bg-primary-500 rounded-full flex items-center justify-center mb-6 shadow-gold-lg">
-                      <span className="text-white font-heading font-bold text-4xl">NTL</span>
+                    <div className="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center mb-6 shadow-green-lg overflow-hidden">
+                      <img src="/logo.jpeg" alt="National Tax Law Associates" className="w-full h-full object-contain p-2" />
                     </div>
                     <h3 className="text-2xl font-heading font-bold text-white mb-2">National Tax Law</h3>
-                    <p className="text-primary-400">Associates</p>
+                    <p className="text-primary-100">Associates</p>
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ repeat: Infinity, duration: 3 }}
-                className="absolute -top-4 -right-4 bg-primary-500 text-white rounded-lg p-4 shadow-gold"
+                className="absolute -top-4 -right-4 bg-white text-primary-500 rounded-lg p-4 shadow-lg"
               >
                 <Shield size={32} />
               </motion.div>

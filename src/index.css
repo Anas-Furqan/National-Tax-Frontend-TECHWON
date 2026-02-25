@@ -21,7 +21,7 @@
 @layer components {
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-white font-semibold rounded-lg 
-           hover:bg-primary-600 transition-all duration-300 shadow-gold hover:shadow-gold-lg;
+           hover:bg-primary-600 transition-all duration-300 shadow-green hover:shadow-green-lg;
   }
   
   .btn-secondary {
@@ -46,8 +46,8 @@
     @apply bg-white rounded-xl shadow-lg p-6 transition-all duration-300 hover:shadow-xl;
   }
   
-  .gold-text {
-    @apply text-transparent bg-clip-text bg-gold-gradient;
+  .green-text {
+    @apply text-transparent bg-clip-text bg-green-gradient;
   }
   
   .input-field {
@@ -72,11 +72,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4A00A;
+  background: #006837;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #AA8008;
+  background: #004223;
 }
 

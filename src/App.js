@@ -9,6 +9,9 @@ import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
+import About from './pages/About';
+import Services from './pages/Services';
+import Contact from './pages/Contact';
 
 // Admin Pages
 import Login from './pages/admin/Login';
@@ -18,6 +21,7 @@ import BlogList from './pages/admin/BlogList';
 import BlogEditor from './pages/admin/BlogEditor';
 import Consultations from './pages/admin/Consultations';
 import Subscribers from './pages/admin/Subscribers';
+import ConsultantManager from './pages/admin/ConsultantManager';
 
 function App() {
   return (
@@ -27,6 +31,9 @@ function App() {
           {/* Public Routes */}
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="services" element={<Services />} />
+            <Route path="contact" element={<Contact />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogDetail />} />
           </Route>
@@ -40,6 +47,7 @@ function App() {
             <Route path="blogs/edit/:id" element={<BlogEditor />} />
             <Route path="consultations" element={<Consultations />} />
             <Route path="subscribers" element={<Subscribers />} />
+            <Route path="consultants" element={<ConsultantManager />} />
           </Route>
         </Routes>
       </Router>

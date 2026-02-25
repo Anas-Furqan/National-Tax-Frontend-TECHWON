@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, Search, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { blogService } from '../services/blogService';
+import Breadcrumb from '../components/common/Breadcrumb';
+import { CardSkeleton, GridSkeleton } from '../components/common/Skeleton';
 
 const Blog = () => {
+  const [searchParams] = useSearchParams();
+  const initialCategory = searchParams.get('category') || '';
+  
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ page: 1, pages: 1 });
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState(initialCategory);
 
   const categories = [
     'All',
@@ -85,6 +90,14 @@ const Blog = () => {
         </div>
       </section>
 
+      {/* Breadcrumb */}
+      <div className="container mx-auto px-4">
+        <Breadcrumb items={[
+          { label: 'Home', href: '/' },
+          { label: 'Blog', href: '/blog', isCurrentPage: true },
+        ]} />
+      </div>
+
       {/* Search & Filter */}
       <section className="py-8 bg-gray-50 border-b">
         <div className="container mx-auto px-4">
@@ -132,12 +145,7 @@ const Blog = () => {
           {loading ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="animate-pulse">
-                  <div className="bg-gray-200 rounded-xl h-48 mb-4"></div>
-                  <div className="bg-gray-200 h-4 rounded w-1/4 mb-3"></div>
-                  <div className="bg-gray-200 h-6 rounded mb-2"></div>
-                  <div className="bg-gray-200 h-4 rounded w-3/4"></div>
-                </div>
+                <CardSkeleton key={i} />
               ))}
             </div>
           ) : blogs.length === 0 ? (

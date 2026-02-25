@@ -7,7 +7,8 @@ import {
   Users, 
   LogOut,
   Menu,
-  X
+  X,
+  UserCircle
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
@@ -26,6 +27,7 @@ const AdminLayout = () => {
     { name: 'Blog Posts', icon: FileText, href: '/admin/blogs' },
     { name: 'Consultations', icon: MessageSquare, href: '/admin/consultations' },
     { name: 'Subscribers', icon: Users, href: '/admin/subscribers' },
+    { name: 'Consultants', icon: UserCircle, href: '/admin/consultants' },
   ];
 
   const handleLogout = () => {

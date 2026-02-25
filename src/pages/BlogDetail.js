@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, Eye, ArrowLeft, Clock, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
 import { blogService } from '../services/blogService';
+import Breadcrumb from '../components/common/Breadcrumb';
+import { BlogDetailSkeleton } from '../components/common/Skeleton';
 
 const BlogDetail = () => {
   const { slug } = useParams();
@@ -36,16 +38,7 @@ const BlogDetail = () => {
     return (
       <div className="min-h-screen bg-gray-50 py-20">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="animate-pulse">
-            <div className="bg-gray-200 h-8 w-1/4 rounded mb-4"></div>
-            <div className="bg-gray-200 h-12 rounded mb-6"></div>
-            <div className="bg-gray-200 h-64 rounded-xl mb-8"></div>
-            <div className="space-y-4">
-              <div className="bg-gray-200 h-4 rounded w-full"></div>
-              <div className="bg-gray-200 h-4 rounded w-5/6"></div>
-              <div className="bg-gray-200 h-4 rounded w-4/6"></div>
-            </div>
-          </div>
+          <BlogDetailSkeleton />
         </div>
       </div>
     );
@@ -69,9 +62,19 @@ const BlogDetail = () => {
       {/* Hero */}
       <section className="bg-secondary-500 py-12">
         <div className="container mx-auto px-4">
+          {/* Breadcrumb */}
+          <Breadcrumb 
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Blog', href: '/blog' },
+              { label: blog.title.substring(0, 50) + (blog.title.length > 50 ? '...' : ''), href: `/blog/${blog.slug}`, isCurrentPage: true },
+            ]} 
+            className="bg-transparent"
+          />
+          
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-6 mt-4"
           >
             <ArrowLeft size={18} />
             Back to Blog

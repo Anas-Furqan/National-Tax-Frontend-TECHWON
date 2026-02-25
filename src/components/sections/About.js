@@ -43,14 +43,14 @@ const About = () => {
           >
             <div className="relative">
               {/* Main Image Container */}
-              <div className="bg-secondary-500 rounded-2xl overflow-hidden">
-                <div className="aspect-[4/3] bg-gradient-to-br from-secondary-400 to-secondary-600 p-8 flex items-center justify-center">
+              <div className="bg-primary-500 rounded-2xl overflow-hidden">
+                <div className="aspect-[4/3] bg-gradient-to-br from-primary-400 to-primary-600 p-8 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="w-24 h-24 mx-auto bg-primary-500 rounded-full flex items-center justify-center mb-6">
-                      <Award className="text-white" size={40} />
+                    <div className="w-24 h-24 mx-auto bg-white rounded-full flex items-center justify-center mb-6 overflow-hidden">
+                      <img src="/logo.jpeg" alt="NTL" className="w-full h-full object-contain p-2" />
                     </div>
                     <h3 className="text-3xl font-heading font-bold text-white mb-2">15+</h3>
-                    <p className="text-gray-300">Years of Excellence</p>
+                    <p className="text-white/80">Years of Excellence</p>
                   </div>
                 </div>
               </div>

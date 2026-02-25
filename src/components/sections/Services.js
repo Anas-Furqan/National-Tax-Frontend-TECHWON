@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -22,48 +23,56 @@ const Services = () => {
     {
       icon: Calculator,
       title: 'Income Tax',
+      slug: 'income-tax-services',
       description: 'Complete income tax solutions including returns filing, tax planning, and FBR compliance.',
       features: ['Tax Return Filing', 'Tax Planning', 'Audit Support', 'Appeals'],
     },
     {
       icon: Receipt,
       title: 'Sales Tax',
+      slug: 'sales-tax-services',
       description: 'Sales tax registration, monthly returns, and compliance management for businesses.',
       features: ['Registration', 'Monthly Returns', 'Refund Claims', 'Compliance'],
     },
     {
       icon: Globe,
       title: 'Customs',
+      slug: 'customs-services',
       description: 'Import/export documentation, customs clearance, and duty optimization services.',
       features: ['Import Clearance', 'Export Documentation', 'Duty Optimization', 'Compliance'],
     },
     {
       icon: FileText,
       title: 'WEBOC',
+      slug: 'weboc-services',
       description: 'Web-based one customs system registration, documentation, and clearance assistance.',
       features: ['Registration', 'GD Filing', 'Documentation', 'Training'],
     },
     {
       icon: CreditCard,
       title: 'GST',
+      slug: 'gst-services',
       description: 'Goods and Services Tax registration, compliance, and return filing services.',
       features: ['Registration', 'Return Filing', 'Input Tax Credit', 'Compliance'],
     },
     {
       icon: Building2,
       title: 'SECP',
+      slug: 'secp-services',
       description: 'Company registration, annual compliance, and corporate secretarial services.',
       features: ['Company Registration', 'Annual Returns', 'Compliance', 'LLP Formation'],
     },
     {
       icon: Stamp,
       title: 'Trademark',
+      slug: 'trademark-services',
       description: 'Trademark registration, renewal, and intellectual property protection services.',
       features: ['TM Search', 'Registration', 'Renewal', 'Infringement'],
     },
     {
       icon: Briefcase,
       title: 'NTN Registration',
+      slug: 'ntn-registration-services',
       description: 'National Tax Number registration for individuals, businesses, and corporations.',
       features: ['Individual NTN', 'Business NTN', 'Company NTN', 'AOP Registration'],
     },
@@ -145,13 +154,13 @@ const Services = () => {
               </ul>
 
               {/* Link */}
-              <a
-                href="#consultation"
+              <Link
+                to={`/blog/${service.slug}`}
                 className="inline-flex items-center gap-2 text-primary-500 font-semibold text-sm group-hover:gap-3 transition-all"
               >
                 Learn More
                 <ArrowRight size={16} />
-              </a>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
