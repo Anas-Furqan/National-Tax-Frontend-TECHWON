@@ -176,10 +176,10 @@ const ConsultationForm = () => {
                 Call us directly for immediate assistance:
               </p>
               <a
-                href="tel:+923001234567"
+                href="tel:02132202292"
                 className="text-2xl font-bold text-primary-400 hover:text-primary-300 transition-colors"
               >
-                +92 300 1234567
+                (021) 32202292
               </a>
             </div>
           </motion.div>
