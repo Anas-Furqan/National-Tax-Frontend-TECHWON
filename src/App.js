@@ -12,6 +12,7 @@ import BlogDetail from './pages/BlogDetail';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import News from './pages/News';
 
 // Admin Pages
 import Login from './pages/admin/Login';
@@ -23,6 +24,7 @@ import Consultations from './pages/admin/Consultations';
 import Subscribers from './pages/admin/Subscribers';
 import ConsultantManager from './pages/admin/ConsultantManager';
 import SocialLinks from './pages/admin/SocialLinks';
+import NewsManager from './pages/admin/NewsManager';
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogDetail />} />
+            <Route path="news" element={<News />} />
           </Route>
 
           {/* Admin Routes */}
@@ -50,6 +53,7 @@ function App() {
             <Route path="subscribers" element={<Subscribers />} />
             <Route path="consultants" element={<ConsultantManager />} />
             <Route path="social-links" element={<SocialLinks />} />
+            <Route path="news" element={<NewsManager />} />
           </Route>
         </Routes>
       </Router>

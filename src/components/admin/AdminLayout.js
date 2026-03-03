@@ -9,7 +9,8 @@ import {
   Menu,
   X,
   UserCircle,
-  Share2
+  Share2,
+  Newspaper
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
@@ -26,6 +27,7 @@ const AdminLayout = () => {
   const menuItems = [
     { name: 'Dashboard', icon: LayoutDashboard, href: '/admin' },
     { name: 'Blog Posts', icon: FileText, href: '/admin/blogs' },
+    { name: 'News & Circulars', icon: Newspaper, href: '/admin/news' },
     { name: 'Consultations', icon: MessageSquare, href: '/admin/consultations' },
     { name: 'Subscribers', icon: Users, href: '/admin/subscribers' },
     { name: 'Consultants', icon: UserCircle, href: '/admin/consultants' },

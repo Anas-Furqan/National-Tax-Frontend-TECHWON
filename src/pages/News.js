@@ -1,0 +1,248 @@
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import {
+  FileText,
+  Download,
+  Calendar,
+  Filter,
+  Search,
+  Loader2,
+  ChevronRight,
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { newsService } from '../services/newsService';
+
+const News = () => {
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const categories = [
+    { value: 'all', label: 'All News' },
+    { value: 'circular', label: 'FBR Circulars' },
+    { value: 'notification', label: 'Notifications' },
+    { value: 'news', label: 'Tax News' },
+    { value: 'update', label: 'Legal Updates' },
+    { value: 'general', label: 'General' },
+  ];
+
+  useEffect(() => {
+    fetchNews();
+  }, [selectedCategory]);
+
+  const fetchNews = async () => {
+    setLoading(true);
+    try {
+      const params = { limit: 50 };
+      if (selectedCategory !== 'all') {
+        params.category = selectedCategory;
+      }
+      const response = await newsService.getNews(params);
+      setNews(response.data || []);
+    } catch (error) {
+      console.error('Error fetching news:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatDate = (date) => {
+    return new Date(date).toLocaleDateString('en-PK', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
+  const getCategoryStyle = (category) => {
+    const styles = {
+      circular: 'bg-blue-100 text-blue-700',
+      notification: 'bg-orange-100 text-orange-700',
+      news: 'bg-green-100 text-green-700',
+      update: 'bg-purple-100 text-purple-700',
+      general: 'bg-gray-100 text-gray-700',
+    };
+    return styles[category] || styles.general;
+  };
+
+  const getCategoryLabel = (value) => {
+    return categories.find((c) => c.value === value)?.label || 'General';
+  };
+
+  const filteredNews = news.filter((item) => {
+    if (!searchQuery) return true;
+    const query = searchQuery.toLowerCase();
+    return (
+      item.title.toLowerCase().includes(query) ||
+      (item.description && item.description.toLowerCase().includes(query))
+    );
+  });
+
+  return (
+    <>
+      {/* Breadcrumb */}
+      <div className="bg-gray-50 border-b">
+        <div className="container mx-auto px-4 py-4">
+          <nav className="flex items-center gap-2 text-sm">
+            <Link to="/" className="text-gray-500 hover:text-primary-500">
+              Home
+            </Link>
+            <ChevronRight size={14} className="text-gray-400" />
+            <span className="text-secondary-500 font-medium">News & Circulars</span>
+          </nav>
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-primary-500 to-primary-700 text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <FileText className="mx-auto mb-4" size={48} />
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">News & Circulars</h1>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              Stay updated with the latest FBR circulars, tax notifications, and legal updates from
+              the Federal Board of Revenue
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Filters */}
+      <section className="py-8 bg-white border-b sticky top-0 z-10">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat.value}
+                  onClick={() => setSelectedCategory(cat.value)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedCategory === cat.value
+                      ? 'bg-primary-500 text-white'
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Search */}
+            <div className="relative w-full md:w-auto">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search news..."
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full md:w-64 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* News Grid */}
+      <section className="py-12 bg-gray-50 min-h-[400px]">
+        <div className="container mx-auto px-4">
+          {loading ? (
+            <div className="flex items-center justify-center py-20">
+              <Loader2 className="animate-spin text-primary-500" size={40} />
+            </div>
+          ) : filteredNews.length === 0 ? (
+            <div className="text-center py-20">
+              <FileText className="mx-auto text-gray-400 mb-4" size={48} />
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">No News Found</h3>
+              <p className="text-gray-500">
+                {searchQuery
+                  ? 'Try adjusting your search terms'
+                  : 'No news available in this category yet'}
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredNews.map((item, index) => (
+                <motion.div
+                  key={item._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden group"
+                >
+                  {/* Card Header with Icon */}
+                  <div className="bg-gradient-to-r from-primary-500 to-primary-600 p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                        <FileText className="text-white" size={24} />
+                      </div>
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium bg-white/90 ${
+                          getCategoryStyle(item.category).replace('bg-', 'text-').split(' ')[1]
+                        }`}
+                      >
+                        {getCategoryLabel(item.category)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Card Body */}
+                  <div className="p-6">
+                    <h3 className="font-semibold text-secondary-500 mb-2 line-clamp-2 group-hover:text-primary-500 transition-colors">
+                      {item.title}
+                    </h3>
+
+                    {item.description && (
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">{item.description}</p>
+                    )}
+
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1 text-gray-500 text-sm">
+                        <Calendar size={14} />
+                        {formatDate(item.createdAt)}
+                      </div>
+
+                      <a
+                        href={item.pdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-medium text-sm"
+                      >
+                        <Download size={16} />
+                        Download PDF
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-secondary-500 text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">Need Help Understanding These Updates?</h2>
+          <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+            Our expert tax consultants can help you understand how these circulars and notifications
+            affect your business.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-block px-8 py-4 bg-primary-500 hover:bg-primary-600 rounded-lg font-semibold transition-colors"
+          >
+            Book a Consultation
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default News;
