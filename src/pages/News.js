@@ -4,10 +4,10 @@ import {
   FileText,
   Download,
   Calendar,
-  Filter,
   Search,
   Loader2,
   ChevronRight,
+  Eye,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { newsService } from '../services/newsService';
@@ -68,6 +68,36 @@ const News = () => {
 
   const getCategoryLabel = (value) => {
     return categories.find((c) => c.value === value)?.label || 'General';
+  };
+
+  // Convert Cloudinary URL to force download
+  const getDownloadUrl = (url) => {
+    if (!url) return '';
+    // For Cloudinary raw URLs, add fl_attachment flag
+    if (url.includes('cloudinary.com')) {
+      return url.replace('/upload/', '/upload/fl_attachment/');
+    }
+    return url;
+  };
+
+  // Handle PDF download
+  const handleDownload = async (url, title) => {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = `${title.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(downloadUrl);
+    } catch (error) {
+      console.error('Download error:', error);
+      // Fallback: open in new tab
+      window.open(url, '_blank');
+    }
   };
 
   const filteredNews = news.filter((item) => {
@@ -201,21 +231,28 @@ const News = () => {
                       <p className="text-gray-600 text-sm mb-4 line-clamp-2">{item.description}</p>
                     )}
 
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1 text-gray-500 text-sm">
-                        <Calendar size={14} />
-                        {formatDate(item.createdAt)}
-                      </div>
+                    <div className="flex items-center gap-1 text-gray-500 text-sm mb-4">
+                      <Calendar size={14} />
+                      {formatDate(item.createdAt)}
+                    </div>
 
+                    <div className="flex items-center gap-2">
                       <a
-                        href={item.pdfUrl}
+                        href={`https://docs.google.com/viewer?url=${encodeURIComponent(item.pdfUrl)}&embedded=true`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary-500 hover:text-primary-600 font-medium text-sm"
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-lg font-medium text-sm transition-colors"
+                      >
+                        <Eye size={16} />
+                        View
+                      </a>
+                      <button
+                        onClick={() => handleDownload(item.pdfUrl, item.title)}
+                        className="flex-1 inline-flex items-center justify-center gap-2 px-3 py-2 bg-secondary-50 text-secondary-600 hover:bg-secondary-100 rounded-lg font-medium text-sm transition-colors"
                       >
                         <Download size={16} />
-                        Download PDF
-                      </a>
+                        Download
+                      </button>
                     </div>
                   </div>
                 </motion.div>
