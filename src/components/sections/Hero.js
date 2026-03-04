@@ -48,7 +48,7 @@ const Hero = () => {
               className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white leading-tight mb-6"
             >
               Your Trusted Partner for{' '}
-              <span className="text-primary-500">Tax & Legal</span> Solutions
+              <span className="text-primary-550">Tax & Legal</span> Solutions
             </motion.h1>
 
             <motion.p
