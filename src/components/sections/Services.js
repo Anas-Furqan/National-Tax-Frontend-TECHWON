@@ -155,7 +155,7 @@ const Services = () => {
 
               {/* Link */}
               <Link
-                to={`/blog/${service.slug}`}
+                to={`/blog?category=${encodeURIComponent(service.title)}`}
                 className="inline-flex items-center gap-2 text-primary-500 font-semibold text-sm group-hover:gap-3 transition-all"
               >
                 Learn More

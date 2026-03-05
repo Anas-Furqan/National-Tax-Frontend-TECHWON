@@ -233,7 +233,7 @@ const News = () => {
 
                     <div className="flex items-center gap-1 text-gray-500 text-sm mb-4">
                       <Calendar size={14} />
-                      {formatDate(item.createdAt)}
+                      {formatDate(item.publishDate || item.createdAt)}
                     </div>
 
                     <div className="flex items-center gap-2">

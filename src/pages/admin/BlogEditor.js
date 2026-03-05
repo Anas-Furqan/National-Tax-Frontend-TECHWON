@@ -35,6 +35,7 @@ const BlogEditor = () => {
     'SECP',
     'Trademark',
     'WEBOC',
+    'NTN Registration',
   ];
 
   useEffect(() => {

@@ -32,6 +32,7 @@ const NewsManager = () => {
     description: '',
     category: 'general',
     isPublished: true,
+    publishDate: new Date().toISOString().split('T')[0],
   });
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfPreview, setPdfPreview] = useState('');
@@ -72,6 +73,7 @@ const NewsManager = () => {
       description: '',
       category: 'general',
       isPublished: true,
+      publishDate: new Date().toISOString().split('T')[0],
     });
     setPdfFile(null);
     setPdfPreview('');
@@ -86,6 +88,9 @@ const NewsManager = () => {
         description: newsItem.description || '',
         category: newsItem.category || 'general',
         isPublished: newsItem.isPublished,
+        publishDate: newsItem.publishDate 
+          ? new Date(newsItem.publishDate).toISOString().split('T')[0]
+          : new Date().toISOString().split('T')[0],
       });
       setPdfPreview(newsItem.pdfUrl);
     } else {
@@ -143,6 +148,7 @@ const NewsManager = () => {
       data.append('description', formData.description);
       data.append('category', formData.category);
       data.append('isPublished', formData.isPublished);
+      data.append('publishDate', formData.publishDate);
       if (pdfFile) {
         data.append('pdf', pdfFile);
       }
@@ -282,7 +288,7 @@ const NewsManager = () => {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2 text-gray-500 text-sm">
                         <Calendar size={14} />
-                        {formatDate(item.createdAt)}
+                        {formatDate(item.publishDate || item.createdAt)}
                       </div>
                     </td>
                     <td className="px-6 py-4">
@@ -403,6 +409,20 @@ const NewsManager = () => {
                       </option>
                     ))}
                   </select>
+                </div>
+
+                {/* Publish Date */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Publish Date
+                  </label>
+                  <input
+                    type="date"
+                    name="publishDate"
+                    value={formData.publishDate}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                  />
                 </div>
 
                 {/* PDF Upload */}

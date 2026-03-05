@@ -25,6 +25,7 @@ const Blog = () => {
     'SECP',
     'Trademark',
     'WEBOC',
+    'NTN Registration',
     'General',
   ];
 
