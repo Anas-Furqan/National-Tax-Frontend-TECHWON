@@ -203,10 +203,13 @@ const Services = () => {
                 </ul>
 
                 {/* Link */}
-                <span className="inline-flex items-center gap-2 text-primary-500 font-semibold text-sm group-hover:gap-3 transition-all">
+                <Link
+                  to={`/blog?category=${encodeURIComponent(service.title)}`}
+                  className="inline-flex items-center gap-2 text-primary-500 font-semibold text-sm group-hover:gap-3 transition-all"
+                >
                   View Related Articles
                   <ArrowRight size={16} />
-                </span>
+                </Link>
               </motion.div>
             ))}
           </motion.div>
