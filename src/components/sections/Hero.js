@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Shield, Award, Users } from 'lucide-react';
 
@@ -67,19 +66,27 @@ const Hero = () => {
               transition={{ delay: 0.5 }}
               className="flex flex-wrap gap-4 mb-12"
             >
-              <Link
-                to="/#consultation"
+              <a
+                href="#consultation"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('consultation')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="btn-primary group"
               >
                 Get Free Consultation
                 <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
-              </Link>
-              <Link
-                to="/#services"
+              </a>
+              <a
+                href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="btn-outline border-white text-white hover:bg-white hover:text-secondary-500"
               >
                 Our Services
-              </Link>
+              </a>
             </motion.div>
 
             {/* Stats */}

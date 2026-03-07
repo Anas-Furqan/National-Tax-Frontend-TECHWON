@@ -74,7 +74,7 @@ const BlogPreview = () => {
   const displayBlogs = blogs.length > 0 ? blogs : placeholderBlogs;
 
   return (
-    <section className="py-20 bg-white" ref={ref}>
+    <section className="py-20 bg-white hidden lg:block" ref={ref}>
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <motion.div

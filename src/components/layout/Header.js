@@ -125,12 +125,16 @@ const Header = () => {
                   </a>
                 ))}
               </div>
-              <Link
-                to="/#consultation"
+              <a
+                href="#consultation"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('consultation')?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className="btn-primary"
               >
                 Free Consultation
-              </Link>
+              </a>
             </div>
 
             {/* Mobile Quick Contact Icons */}
@@ -198,12 +202,17 @@ const Header = () => {
                     </a>
                   ))}
                 </div>
-                <Link
-                  to="/#consultation"
+                <a
+                  href="#consultation"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMobileMenuOpen(false);
+                    document.getElementById('consultation')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="btn-primary w-full text-center"
                 >
                   Free Consultation
-                </Link>
+                </a>
               </div>
             </motion.div>
           )}

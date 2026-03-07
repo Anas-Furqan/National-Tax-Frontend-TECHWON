@@ -270,21 +270,39 @@ const ConsultationForm = () => {
                     Upload Tax Notice (PDF/JPG)
                   </label>
                   {!file ? (
-                    <label className="border-2 border-dashed border-gray-200 rounded-xl p-8 text-center cursor-pointer hover:border-primary-500 transition-colors block">
-                      <input
-                        type="file"
-                        onChange={handleFileChange}
-                        accept=".pdf,.jpg,.jpeg,.png"
-                        className="hidden"
-                      />
-                      <Upload className="mx-auto text-gray-400 mb-3" size={32} />
-                      <p className="text-gray-500 text-sm">
-                        Drag & drop or click to upload
-                      </p>
-                      <p className="text-gray-400 text-xs mt-1">
-                        PDF, JPG, PNG (max 10MB)
-                      </p>
-                    </label>
+                    <div className="space-y-2">
+                      {/* Desktop/Tablet: Drag & drop style */}
+                      <label className="hidden sm:block border-2 border-dashed border-gray-200 rounded-xl p-8 text-center cursor-pointer hover:border-primary-500 transition-colors">
+                        <input
+                          type="file"
+                          onChange={handleFileChange}
+                          accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                          className="hidden"
+                        />
+                        <Upload className="mx-auto text-gray-400 mb-3" size={32} />
+                        <p className="text-gray-500 text-sm">
+                          Drag & drop or click to upload
+                        </p>
+                        <p className="text-gray-400 text-xs mt-1">
+                          PDF, JPG, PNG (max 10MB)
+                        </p>
+                      </label>
+                      {/* Mobile: Touch-friendly button */}
+                      <label className="sm:hidden flex items-center justify-center gap-3 w-full px-4 py-4 bg-primary-50 border-2 border-primary-200 rounded-xl cursor-pointer active:bg-primary-100 transition-colors">
+                        <input
+                          type="file"
+                          onChange={handleFileChange}
+                          accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                          capture="environment"
+                          className="hidden"
+                        />
+                        <Upload className="text-primary-500" size={24} />
+                        <div className="text-left">
+                          <p className="text-primary-600 font-medium">Tap to Upload File</p>
+                          <p className="text-gray-500 text-xs">PDF, JPG, PNG (max 10MB)</p>
+                        </div>
+                      </label>
+                    </div>
                   ) : (
                     <div className="flex items-center justify-between bg-primary-50 rounded-xl p-4">
                       <div className="flex items-center gap-3">

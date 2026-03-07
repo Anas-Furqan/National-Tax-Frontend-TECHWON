@@ -324,16 +324,54 @@ const Consultations = () => {
               {selectedConsultation.noticeFileUrl && (
                 <div>
                   <h4 className="font-medium text-secondary-500 mb-2">Attached File</h4>
-                  <a
-                    href={selectedConsultation.noticeFileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-primary-500 hover:underline"
-                  >
-                    <FileText size={18} />
-                    View/Download File
-                    <Download size={14} />
-                  </a>
+                  {selectedConsultation.noticeFileUrl.toLowerCase().endsWith('.pdf') ||
+                   selectedConsultation.noticeFileUrl.includes('/raw/') ? (
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+                        <FileText className="text-red-500" size={24} />
+                        <span className="text-sm text-gray-600">PDF Document</span>
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => window.open(selectedConsultation.noticeFileUrl, '_blank')}
+                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-lg text-sm font-medium"
+                        >
+                          <Eye size={16} />
+                          View PDF
+                        </button>
+                        <button
+                          onClick={() => {
+                            const link = document.createElement('a');
+                            link.href = selectedConsultation.noticeFileUrl;
+                            link.download = 'consultation-document.pdf';
+                            link.target = '_blank';
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                          }}
+                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-secondary-50 text-secondary-600 hover:bg-secondary-100 rounded-lg text-sm font-medium"
+                        >
+                          <Download size={16} />
+                          Download
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      <img
+                        src={selectedConsultation.noticeFileUrl}
+                        alt="Attached document"
+                        className="w-full max-h-48 object-contain rounded-lg border"
+                      />
+                      <button
+                        onClick={() => window.open(selectedConsultation.noticeFileUrl, '_blank')}
+                        className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-lg text-sm font-medium"
+                      >
+                        <Eye size={16} />
+                        View Full Image
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
 
