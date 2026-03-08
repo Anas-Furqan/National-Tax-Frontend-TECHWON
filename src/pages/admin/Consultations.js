@@ -15,6 +15,73 @@ import {
 import toast from 'react-hot-toast';
 import { consultationService } from '../../services/consultationService';
 
+// Simple FileViewer component - Supabase URLs are public
+const FileViewer = ({ fileUrl }) => {
+  // Check if PDF based on URL
+  const isPdf = fileUrl.toLowerCase().includes('.pdf');
+
+  const handleView = () => {
+    window.open(fileUrl, '_blank');
+  };
+
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = isPdf ? 'consultation-document.pdf' : 'consultation-document';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  return (
+    <div className="space-y-2">
+      {isPdf ? (
+        <>
+          <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+            <FileText className="text-red-500" size={24} />
+            <span className="text-sm text-gray-600">PDF Document</span>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={handleView}
+              className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-lg text-sm font-medium"
+            >
+              <Eye size={16} />
+              View
+            </button>
+            <button
+              onClick={handleDownload}
+              className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-secondary-50 text-secondary-600 hover:bg-secondary-100 rounded-lg text-sm font-medium"
+            >
+              <Download size={16} />
+              Download
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <img
+            src={fileUrl}
+            alt="Attached document"
+            className="w-full max-h-48 object-contain rounded-lg border"
+            onError={(e) => {
+              e.target.style.display = 'none';
+            }}
+          />
+          <button
+            onClick={handleView}
+            className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-lg text-sm font-medium"
+          >
+            <Eye size={16} />
+            View Full Image
+          </button>
+        </>
+      )}
+    </div>
+  );
+};
+
 const Consultations = () => {
   const [consultations, setConsultations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -324,54 +391,7 @@ const Consultations = () => {
               {selectedConsultation.noticeFileUrl && (
                 <div>
                   <h4 className="font-medium text-secondary-500 mb-2">Attached File</h4>
-                  {selectedConsultation.noticeFileUrl.toLowerCase().endsWith('.pdf') ||
-                   selectedConsultation.noticeFileUrl.includes('/raw/') ? (
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
-                        <FileText className="text-red-500" size={24} />
-                        <span className="text-sm text-gray-600">PDF Document</span>
-                      </div>
-                      <div className="flex gap-2">
-                        <button
-                          onClick={() => window.open(selectedConsultation.noticeFileUrl, '_blank')}
-                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-lg text-sm font-medium"
-                        >
-                          <Eye size={16} />
-                          View PDF
-                        </button>
-                        <button
-                          onClick={() => {
-                            const link = document.createElement('a');
-                            link.href = selectedConsultation.noticeFileUrl;
-                            link.download = 'consultation-document.pdf';
-                            link.target = '_blank';
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
-                          }}
-                          className="flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-secondary-50 text-secondary-600 hover:bg-secondary-100 rounded-lg text-sm font-medium"
-                        >
-                          <Download size={16} />
-                          Download
-                        </button>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="space-y-2">
-                      <img
-                        src={selectedConsultation.noticeFileUrl}
-                        alt="Attached document"
-                        className="w-full max-h-48 object-contain rounded-lg border"
-                      />
-                      <button
-                        onClick={() => window.open(selectedConsultation.noticeFileUrl, '_blank')}
-                        className="w-full flex items-center justify-center gap-2 px-3 py-2 bg-primary-50 text-primary-600 hover:bg-primary-100 rounded-lg text-sm font-medium"
-                      >
-                        <Eye size={16} />
-                        View Full Image
-                      </button>
-                    </div>
-                  )}
+                  <FileViewer fileUrl={selectedConsultation.noticeFileUrl} />
                 </div>
               )}
 
