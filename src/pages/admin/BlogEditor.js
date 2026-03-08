@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Upload, X, Loader2, Save, Eye } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { blogService } from '../../services/blogService';
+import { categoryService } from '../../services/categoryService';
 
 const BlogEditor = () => {
   const navigate = useNavigate();
@@ -14,35 +15,34 @@ const BlogEditor = () => {
   const [saving, setSaving] = useState(false);
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailPreview, setThumbnailPreview] = useState('');
+  const [categories, setCategories] = useState([]);
 
   const [formData, setFormData] = useState({
     title: '',
     content: '',
     excerpt: '',
-    category: 'General',
+    category: '',
     tags: '',
     metaTitle: '',
     metaDescription: '',
     isPublished: false,
   });
 
-  const categories = [
-    'General',
-    'Income Tax',
-    'Sales Tax',
-    'Customs',
-    'GST',
-    'SECP',
-    'Trademark',
-    'WEBOC',
-    'NTN Registration',
-  ];
-
   useEffect(() => {
+    fetchCategories();
     if (isEdit) {
       fetchBlog();
     }
   }, [id]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await categoryService.getCategories('Blog');
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+    }
+  };
 
   const fetchBlog = async () => {
     setLoading(true);
@@ -53,7 +53,7 @@ const BlogEditor = () => {
         title: blog.title || '',
         content: blog.content || '',
         excerpt: blog.excerpt || '',
-        category: blog.category || 'General',
+        category: blog.category?._id || blog.category || '',
         tags: blog.tags?.join(', ') || '',
         metaTitle: blog.metaTitle || '',
         metaDescription: blog.metaDescription || '',
@@ -329,9 +329,10 @@ const BlogEditor = () => {
                 onChange={handleChange}
                 className="input-field"
               >
+                <option value="">Select a category</option>
                 {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
                   </option>
                 ))}
               </select>

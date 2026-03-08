@@ -25,6 +25,7 @@ import Subscribers from './pages/admin/Subscribers';
 import ConsultantManager from './pages/admin/ConsultantManager';
 import SocialLinks from './pages/admin/SocialLinks';
 import NewsManager from './pages/admin/NewsManager';
+import CategoryManager from './pages/admin/CategoryManager';
 
 function App() {
   return (
@@ -54,6 +55,7 @@ function App() {
             <Route path="consultants" element={<ConsultantManager />} />
             <Route path="social-links" element={<SocialLinks />} />
             <Route path="news" element={<NewsManager />} />
+            <Route path="categories" element={<CategoryManager />} />
           </Route>
         </Routes>
       </Router>

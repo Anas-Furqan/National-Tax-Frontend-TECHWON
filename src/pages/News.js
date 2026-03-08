@@ -11,31 +11,37 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { newsService } from '../services/newsService';
+import { categoryService } from '../services/categoryService';
 
 const News = () => {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
+  const [categories, setCategories] = useState([]);
 
-  const categories = [
-    { value: 'all', label: 'All News' },
-    { value: 'circular', label: 'FBR Circulars' },
-    { value: 'notification', label: 'Notifications' },
-    { value: 'news', label: 'Tax News' },
-    { value: 'update', label: 'Legal Updates' },
-    { value: 'general', label: 'General' },
-  ];
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     fetchNews();
   }, [selectedCategory]);
 
+  const fetchCategories = async () => {
+    try {
+      const response = await categoryService.getCategories('News');
+      setCategories(response.data || []);
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+    }
+  };
+
   const fetchNews = async () => {
     setLoading(true);
     try {
       const params = { limit: 50 };
-      if (selectedCategory !== 'all') {
+      if (selectedCategory) {
         params.category = selectedCategory;
       }
       const response = await newsService.getNews(params);
@@ -56,6 +62,7 @@ const News = () => {
   };
 
   const getCategoryStyle = (category) => {
+    const slug = category?.slug || '';
     const styles = {
       circular: 'bg-blue-100 text-blue-700',
       notification: 'bg-orange-100 text-orange-700',
@@ -63,11 +70,15 @@ const News = () => {
       update: 'bg-purple-100 text-purple-700',
       general: 'bg-gray-100 text-gray-700',
     };
-    return styles[category] || styles.general;
+    return styles[slug] || 'bg-primary-100 text-primary-700';
   };
 
-  const getCategoryLabel = (value) => {
-    return categories.find((c) => c.value === value)?.label || 'General';
+  const getCategoryLabel = (category) => {
+    if (typeof category === 'object' && category?.name) {
+      return category.name;
+    }
+    const found = categories.find((c) => c._id === category);
+    return found?.name || 'Uncategorized';
   };
 
   // Convert Cloudinary URL to force download
@@ -148,17 +159,27 @@ const News = () => {
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* Category Filter */}
             <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setSelectedCategory('')}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  !selectedCategory
+                    ? 'bg-primary-500 text-white'
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                All News
+              </button>
               {categories.map((cat) => (
                 <button
-                  key={cat.value}
-                  onClick={() => setSelectedCategory(cat.value)}
+                  key={cat._id}
+                  onClick={() => setSelectedCategory(cat._id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    selectedCategory === cat.value
+                    selectedCategory === cat._id
                       ? 'bg-primary-500 text-white'
                       : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                   }`}
                 >
-                  {cat.label}
+                  {cat.name}
                 </button>
               ))}
             </div>

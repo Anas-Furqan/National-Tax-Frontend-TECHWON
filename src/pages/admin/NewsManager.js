@@ -17,6 +17,7 @@ import {
   Search,
 } from 'lucide-react';
 import { newsService } from '../../services/newsService';
+import { categoryService } from '../../services/categoryService';
 
 const NewsManager = () => {
   const [news, setNews] = useState([]);
@@ -26,28 +27,31 @@ const NewsManager = () => {
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
   const [deleteConfirm, setDeleteConfirm] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    category: 'general',
+    category: '',
     isPublished: true,
     publishDate: new Date().toISOString().split('T')[0],
   });
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfPreview, setPdfPreview] = useState('');
 
-  const categories = [
-    { value: 'circular', label: 'FBR Circular' },
-    { value: 'notification', label: 'Notification' },
-    { value: 'news', label: 'Tax News' },
-    { value: 'update', label: 'Legal Update' },
-    { value: 'general', label: 'General' },
-  ];
-
   useEffect(() => {
+    fetchCategories();
     fetchNews();
   }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await categoryService.getCategories('News');
+      setCategories(response.data);
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+    }
+  };
 
   const fetchNews = async () => {
     setLoading(true);
@@ -71,7 +75,7 @@ const NewsManager = () => {
     setFormData({
       title: '',
       description: '',
-      category: 'general',
+      category: '',
       isPublished: true,
       publishDate: new Date().toISOString().split('T')[0],
     });
@@ -86,7 +90,7 @@ const NewsManager = () => {
       setFormData({
         title: newsItem.title,
         description: newsItem.description || '',
-        category: newsItem.category || 'general',
+        category: newsItem.category?._id || newsItem.category || '',
         isPublished: newsItem.isPublished,
         publishDate: newsItem.publishDate 
           ? new Date(newsItem.publishDate).toISOString().split('T')[0]
@@ -192,14 +196,24 @@ const NewsManager = () => {
   };
 
   const getCategoryStyle = (category) => {
-    const styles = {
+    // Generate consistent color based on category name or slug
+    const slug = category?.slug || category || '';
+    const colorMap = {
       circular: 'bg-blue-100 text-blue-700',
       notification: 'bg-orange-100 text-orange-700',
       news: 'bg-green-100 text-green-700',
       update: 'bg-purple-100 text-purple-700',
       general: 'bg-gray-100 text-gray-700',
     };
-    return styles[category] || styles.general;
+    return colorMap[slug] || 'bg-primary-100 text-primary-700';
+  };
+
+  const getCategoryName = (category) => {
+    if (typeof category === 'object' && category?.name) {
+      return category.name;
+    }
+    const found = categories.find(c => c._id === category);
+    return found?.name || 'Uncategorized';
   };
 
   if (loading) {
@@ -282,7 +296,7 @@ const NewsManager = () => {
                     </td>
                     <td className="px-6 py-4">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${getCategoryStyle(item.category)}`}>
-                        {categories.find((c) => c.value === item.category)?.label || 'General'}
+                        {getCategoryName(item.category)}
                       </span>
                     </td>
                     <td className="px-6 py-4">
@@ -403,9 +417,10 @@ const NewsManager = () => {
                     onChange={handleInputChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                   >
+                    <option value="">Select Category</option>
                     {categories.map((cat) => (
-                      <option key={cat.value} value={cat.value}>
-                        {cat.label}
+                      <option key={cat._id} value={cat._id}>
+                        {cat.name}
                       </option>
                     ))}
                   </select>

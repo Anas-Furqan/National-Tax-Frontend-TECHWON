@@ -146,7 +146,7 @@ const BlogList = () => {
                       </div>
                     </td>
                     <td className="px-6 py-4 text-gray-600">
-                      {blog.category || 'General'}
+                      {blog.category?.name || 'General'}
                     </td>
                     <td className="px-6 py-4">
                       <span

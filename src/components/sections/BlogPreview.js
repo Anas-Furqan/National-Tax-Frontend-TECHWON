@@ -138,7 +138,7 @@ const BlogPreview = () => {
                     </div>
                     <div className="absolute top-4 left-4">
                       <span className="bg-primary-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                        {blog.category || 'General'}
+                        {blog.category?.name || 'General'}
                       </span>
                     </div>
                   </div>

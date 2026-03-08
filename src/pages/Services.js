@@ -276,7 +276,7 @@ const Services = () => {
                     </div>
                     <div className="p-6">
                       <span className="inline-block bg-primary-100 text-primary-600 text-xs font-semibold px-3 py-1 rounded-full mb-3">
-                        {blog.category || selectedService.title}
+                        {blog.category?.name || selectedService.title}
                       </span>
                       <h3 className="text-lg font-semibold text-secondary-500 mb-2 group-hover:text-primary-500 transition-colors line-clamp-2">
                         {blog.title}

@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, Search, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { blogService } from '../services/blogService';
+import { categoryService } from '../services/categoryService';
 import Breadcrumb from '../components/common/Breadcrumb';
 import { CardSkeleton, GridSkeleton } from '../components/common/Skeleton';
 
@@ -15,23 +16,24 @@ const Blog = () => {
   const [pagination, setPagination] = useState({ page: 1, pages: 1 });
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState(initialCategory);
+  const [categories, setCategories] = useState([]);
 
-  const categories = [
-    'All',
-    'Income Tax',
-    'Sales Tax',
-    'Customs',
-    'GST',
-    'SECP',
-    'Trademark',
-    'WEBOC',
-    'NTN Registration',
-    'General',
-  ];
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   useEffect(() => {
     fetchBlogs();
   }, [pagination.page, category]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await categoryService.getCategories('Blog');
+      setCategories(response.data || []);
+    } catch (error) {
+      console.error('Failed to fetch categories:', error);
+    }
+  };
 
   const fetchBlogs = async () => {
     setLoading(true);
@@ -62,8 +64,8 @@ const Blog = () => {
     fetchBlogs();
   };
 
-  const handleCategoryChange = (cat) => {
-    setCategory(cat === 'All' ? '' : cat);
+  const handleCategoryChange = (catId) => {
+    setCategory(catId);
     setPagination((prev) => ({ ...prev, page: 1 }));
   };
 
@@ -122,17 +124,27 @@ const Blog = () => {
 
             {/* Categories */}
             <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => handleCategoryChange('')}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  !category
+                    ? 'bg-primary-500 text-white'
+                    : 'bg-white text-gray-600 hover:bg-primary-100'
+                }`}
+              >
+                All
+              </button>
               {categories.map((cat) => (
                 <button
-                  key={cat}
-                  onClick={() => handleCategoryChange(cat)}
+                  key={cat._id}
+                  onClick={() => handleCategoryChange(cat._id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    (cat === 'All' && !category) || category === cat
+                    category === cat._id
                       ? 'bg-primary-500 text-white'
                       : 'bg-white text-gray-600 hover:bg-primary-100'
                   }`}
                 >
-                  {cat}
+                  {cat.name}
                 </button>
               ))}
             </div>
@@ -179,7 +191,7 @@ const Blog = () => {
                         </div>
                         <div className="absolute top-4 left-4">
                           <span className="bg-primary-500 text-white text-xs font-semibold px-3 py-1 rounded-full">
-                            {blog.category || 'General'}
+                            {blog.category?.name || 'General'}
                           </span>
                         </div>
                       </div>

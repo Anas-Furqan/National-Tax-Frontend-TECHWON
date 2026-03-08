@@ -86,7 +86,7 @@ const BlogDetail = () => {
             className="max-w-4xl"
           >
             <span className="inline-block bg-primary-500 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
-              {blog.category || 'General'}
+              {blog.category?.name || 'General'}
             </span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-white mb-6 leading-tight">
               {blog.title}
