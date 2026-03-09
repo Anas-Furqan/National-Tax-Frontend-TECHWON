@@ -15,23 +15,45 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({ page: 1, pages: 1 });
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState(initialCategory);
+  const [category, setCategory] = useState('');
   const [categories, setCategories] = useState([]);
+  const [categoriesLoaded, setCategoriesLoaded] = useState(false);
 
   useEffect(() => {
     fetchCategories();
   }, []);
 
+  // Once categories are loaded, match URL category name to ID
   useEffect(() => {
-    fetchBlogs();
-  }, [pagination.page, category]);
+    if (categoriesLoaded && initialCategory) {
+      // Try to find category by name (case-insensitive) or slug
+      const matchedCat = categories.find(
+        (c) => c.name.toLowerCase() === initialCategory.toLowerCase() || 
+               c.slug === initialCategory.toLowerCase()
+      );
+      if (matchedCat) {
+        setCategory(matchedCat._id);
+      } else {
+        // If no match, clear the filter
+        setCategory('');
+      }
+    }
+  }, [categoriesLoaded, initialCategory, categories]);
+
+  useEffect(() => {
+    if (categoriesLoaded) {
+      fetchBlogs();
+    }
+  }, [pagination.page, category, categoriesLoaded]);
 
   const fetchCategories = async () => {
     try {
       const response = await categoryService.getCategories('Blog');
       setCategories(response.data || []);
+      setCategoriesLoaded(true);
     } catch (error) {
       console.error('Failed to fetch categories:', error);
+      setCategoriesLoaded(true);
     }
   };
 
