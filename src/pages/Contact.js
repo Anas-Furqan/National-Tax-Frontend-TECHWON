@@ -31,7 +31,7 @@ const Contact = () => {
       name: 'Head Office - Custom House Area',
       address: '8, Opp. Custom House, Suite#:1, Mezzanine Floor, Poonawala View, G. K, 15 Bohri Rd, Karachi',
       phone: '+92 345 271 2672',
-      email: 'nationaltaxlawassociates@gmail.com',
+      email: 'nationaltaxassociates@gmail.com',
       hours: 'Mon-Sat: 9:00 AM - 6:00 PM',
       mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.422386164573!2d66.9933668!3d24.849419500000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb3155791c2dd1b%3A0x7265bea350272910!2sBhundi%20Corporation%20(Clearing%20Agent%20And%20Consultant)!5e0!3m2!1sen!2s!4v1772052601053!5m2!1sen!2s',
       isPrimary: true,
@@ -41,7 +41,7 @@ const Contact = () => {
       name: 'Branch Office - North Karachi',
       address: 'Noorani Market, 11 G New, Sector 11-G, North Karachi, Karachi',
       phone: '+92 345 212 6174',
-      email: 'nationaltaxlawassociates@gmail.com',
+      email: 'nationaltaxassociates@gmail.com',
       hours: 'Mon-Sat: 9:00 AM - 6:00 PM',
       mapEmbed: 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7233.4570104883005!2d67.0857256!3d24.9753501!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb34728c40c7655%3A0x1b5f5b7e05d219ec!2sRehan%20Tawakal%20Enterprise!5e0!3m2!1sen!2s!4v1772052802125!5m2!1sen!2s',
       isPrimary: false,
@@ -153,7 +153,7 @@ const Contact = () => {
 
             {/* Email */}
             <motion.a
-              href="mailto:nationaltaxlawassociates@gmail.com"
+              href="mailto:nationaltaxassociates@gmail.com"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -163,7 +163,7 @@ const Contact = () => {
                 <Mail className="text-primary-500 group-hover:text-white transition-colors" size={24} />
               </div>
               <h3 className="text-lg font-semibold text-secondary-500 mb-2">Email Us</h3>
-              <p className="text-primary-500 font-medium text-sm break-all">nationaltaxlawassociates@gmail.com</p>
+              <p className="text-primary-500 font-medium text-sm break-all">nationaltaxassociates@gmail.com</p>
               <p className="text-gray-500 text-sm">We reply within 24 hours</p>
             </motion.a>
 

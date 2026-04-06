@@ -28,7 +28,7 @@ const About = () => {
       title: 'Senior Tax Consultant',
       phone: '03452712672',
       whatsapp: '923452712672',
-      email: 'nationaltaxlawassociates@gmail.com',
+      email: 'nationaltaxassociates@gmail.com',
       image: '/logo.jpeg',
       specializations: ['Income Tax', 'Sales Tax', 'FBR Compliance'],
       experience: '15+ Years',
@@ -39,7 +39,7 @@ const About = () => {
       title: 'Legal & Customs Expert',
       phone: '03452126174',
       whatsapp: '923452126174',
-      email: 'nationaltaxlawassociates@gmail.com',
+      email: 'nationaltaxassociates@gmail.com',
       image: '/logo.jpeg',
       specializations: ['Customs', 'WEBOC', 'SECP', 'Trademark'],
       experience: '12+ Years',
@@ -424,11 +424,11 @@ const About = () => {
                     )}
                     
                     <a 
-                      href="mailto:nationaltaxlawassociates@gmail.com"
+                      href="mailto:nationaltaxassociates@gmail.com"
                       className="flex items-center gap-3 text-gray-600 hover:text-primary-600 transition-colors"
                     >
                       <Mail className="text-primary-500" size={18} />
-                      <span>nationaltaxlawassociates@gmail.com</span>
+                      <span>nationaltaxassociates@gmail.com</span>
                     </a>
                   </div>
                 </div>

@@ -45,9 +45,9 @@ const Header = () => {
               <Phone size={14} />
               <span>021 32202292</span>
             </a>
-            <a href="mailto:nationaltaxlawassociates@gmail.com" className="flex items-center gap-2 hover:text-primary-100 transition-colors">
+            <a href="mailto:nationaltaxassociates@gmail.com" className="flex items-center gap-2 hover:text-primary-100 transition-colors">
               <Mail size={14} />
-              <span>nationaltaxlawassociates@gmail.com</span>
+              <span>nationaltaxassociates@gmail.com</span>
             </a>
           </div>
           <div className="flex items-center gap-4">

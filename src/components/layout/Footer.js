@@ -165,8 +165,8 @@ const Footer = () => {
               ))}
               <div className="flex items-center gap-3 pt-2">
                 <Mail className="text-primary-500 flex-shrink-0" size={16} />
-                <a href="mailto:nationaltaxlawassociates@gmail.com" className="text-gray-300 hover:text-primary-400 transition-colors text-sm break-all">
-                  nationaltaxlawassociates@gmail.com
+                <a href="mailto:nationaltaxassociates@gmail.com" className="text-gray-300 hover:text-primary-400 transition-colors text-sm break-all">
+                  nationaltaxassociates@gmail.com
                 </a>
               </div>
               <div className="flex items-start gap-3">

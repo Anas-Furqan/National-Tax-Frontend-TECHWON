@@ -69,8 +69,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-primary-100 text-sm mb-1">Email</p>
-                  <a href="mailto:nationaltaxlawassociates@gmail.com" className="hover:text-primary-100 transition-colors break-all">
-                    nationaltaxlawassociates@gmail.com
+                  <a href="mailto:nationaltaxassociates@gmail.com" className="hover:text-primary-100 transition-colors break-all">
+                    nationaltaxassociates@gmail.com
                   </a>
                 </div>
               </div>
