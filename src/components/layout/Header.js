@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Mail, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone, Mail, MessageCircle, Search } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -72,20 +72,77 @@ const Header = () => {
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white shadow-lg py-2'
-            : 'bg-white/95 backdrop-blur-sm py-4'
+            ? 'bg-white shadow-lg pb-2'
+            : 'bg-white/95 backdrop-blur-sm pb-3'
         }`}
       >
         <nav className="container mx-auto px-4">
-          <div className="flex items-center justify-between">
+          {/* Mobile Header */}
+          <div className="lg:hidden -mx-4 px-4 bg-white border-b border-gray-100">
+            <div className="grid grid-cols-3 items-center h-24">
+              <div className="justify-self-start">
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="p-2 text-secondary-500 hover:text-primary-500 transition-colors"
+                  aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                >
+                  {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+                </button>
+              </div>
+
+              <Link to="/" className="justify-self-center">
+                <img
+                  src="/nationaltaxlogo.svg"
+                  alt="National Tax Law Associates"
+                  width="210"
+                  height="68"
+                  className="object-contain"
+                />
+              </Link>
+
+              <div className="justify-self-end flex items-center gap-1.5">
+                <a
+                  href="https://wa.me/923452712672"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
+                  title="WhatsApp Consultant 1"
+                  aria-label="WhatsApp"
+                >
+                  <MessageCircle size={16} />
+                </a>
+                <a
+                  href="tel:03452126174"
+                  className="p-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full transition-colors"
+                  title="Call Consultant 2"
+                  aria-label="Call"
+                >
+                  <Phone size={16} />
+                </a>
+                {/* <Link
+                  to="/blog"
+                  className="p-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full transition-colors"
+                  title="Search"
+                  aria-label="Search"
+                >
+                  <Search size={16} />
+                </Link> */}
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop Header */}
+          <div className="hidden lg:flex items-center justify-between">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <img 
-                src="/logo.jpeg" 
-                alt="National Tax Law Associates" 
-                className="w-12 h-12 rounded-lg object-contain"
+              <img
+                src="/nationaltaxlogo.svg"
+                alt="National Tax Law Associates"
+                width="220"
+                height="72"
+                className="w-56 h-[72px] object-contain"
               />
-              <div className="hidden sm:block">
+              <div>
                 <h1 className="text-lg font-heading font-bold text-secondary-500 leading-tight">
                   National Tax Law
                 </h1>
@@ -136,34 +193,6 @@ const Header = () => {
                 Free Consultation
               </a>
             </div>
-
-            {/* Mobile Quick Contact Icons */}
-            <div className="lg:hidden flex items-center gap-2">
-              <a
-                href="https://wa.me/923452712672"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-green-500 hover:bg-green-600 text-white rounded-full transition-colors"
-                title="WhatsApp Consultant 1"
-              >
-                <MessageCircle size={18} />
-              </a>
-              <a
-                href="tel:03452126174"
-                className="p-2 bg-primary-500 hover:bg-primary-600 text-white rounded-full transition-colors"
-                title="Call Consultant 2"
-              >
-                <Phone size={18} />
-              </a>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-secondary-500 hover:text-primary-500 transition-colors"
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
         </nav>
 
