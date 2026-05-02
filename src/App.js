@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 
+import useFacebookPixel from './hooks/useFacebookPixel';
+
 // Layout
 import Layout from './components/layout/Layout';
 
@@ -27,10 +29,16 @@ import SocialLinks from './pages/admin/SocialLinks';
 import NewsManager from './pages/admin/NewsManager';
 import CategoryManager from './pages/admin/CategoryManager';
 
+function FacebookPixelTracker() {
+  useFacebookPixel();
+  return null;
+}
+
 function App() {
   return (
     <AuthProvider>
       <Router>
+        <FacebookPixelTracker />
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<Layout />}>
